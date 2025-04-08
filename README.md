@@ -3,7 +3,7 @@ This program cleans news content text data from irrelevant sentence segments ini
 
 > "BACA JUGA: Dapatkan Hadiah Uang Gratis Melalui DANA Kaget".
 
-The program is intended for media monitoring purposes, spefically, for analyze the share of voice (SOV) of news coverage across monitored brands.
+The program is intended for media monitoring purposes, spefically, for analyzing the share of voice (SOV) of news coverage across monitored brands.
 
 The data cleaning algorithm removes irrelevant sentences by analyzing how sentences or phrases associated with the "baca juga" strings are structured in news content [more information here](docs/analysis.ipynb). Namely, it determines irrelevant sentences by means of regular expression matching, followed by analysis of sentence structure (word length, punctuation usage, salient lemmas), and/or sentence segmentation/tokenization using NLTK library.
 
