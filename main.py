@@ -49,3 +49,7 @@
 # fourth stage of the data cleaning pipeline
 
 # save as csv
+
+# def to check if news article is certainly full or probably full
+
+# def to check words not in cleaned text
