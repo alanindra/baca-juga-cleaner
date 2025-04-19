@@ -7,7 +7,7 @@ This tool cleans news content text data by removing irrelevant syntactic constit
 The cleaning pipeline is designed for **media monitoring** use cases, particularly to prepare text for **Share of Voice (SOV)** analysis in brand-related news coverage.
 
 ### Why it matters
-In media monitoring workflows, irrelevant constituents like "baca juga..." can distort keyword frequency related to monitored brands. This tool removes such syntactic noise to improve the accuracy of downstream analytics, such as calculating Share of Voice (SOV) or conducting sentiment classification.
+In media monitoring workflows, irrelevant constituents like "baca juga..." can distort keyword frequency related to monitored brands. This tool removes such syntactic noise to improve the accuracy of downstream analytics, such as calculating Share of Voice (SOV).
 
 The data-cleaning algorithm removes irrelevant constituents that are most likely promotional, redundant, or non-informative by analyzing how syntactic constituents associated with `"baca juga"` strings are structured in news content. [More details available in the analysis notebook](docs/analysis.ipynb)
 
