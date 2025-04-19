@@ -1,11 +1,15 @@
-# news-content-cleaner
-This program cleans news content text data from irrelevant syntactic constituents initiated by "baca juga" and "advertisement" strings, e.g.:
+# baca-juga-cleaner
+This tool cleans news content text data by removing irrelevant syntactic constituents initiated by strings such as `"baca juga"` and `"advertisement"`.
 
-> "BACA JUGA: Dapatkan Hadiah Uang Gratis Melalui DANA Kaget".
+**For example:**
+> *BACA JUGA: Dapatkan Hadiah Uang Gratis Melalui DANA Kaget*
 
-The program is intended for media monitoring purposes, spefically, to clean text data for share of voice (SOV) analysis of news coverage across monitored brands.
+The cleaning pipeline is designed for **media monitoring** use cases, particularly to prepare text for **Share of Voice (SOV)** analysis in brand-related news coverage.
 
-The data cleaning algorithm removes irrelevant sentences by analyzing how syntactic constituents associated with the "baca juga" strings are structured in news content [more information here](docs/analysis.ipynb). Namely, it determines irrelevant sentences by means of regular expression matching, followed by analysis of sentence structure (word length, punctuation usage, salient lemmas), and/or sentence segmentation/tokenization using NLTK library.
+### Why it matters
+In media monitoring workflows, irrelevant constituents like "baca juga..." can distort keyword frequency related to monitored brands. This tool removes such syntactic noise to improve the accuracy of downstream analytics, such as calculating Share of Voice (SOV) or conducting sentiment classification.
+
+The data-cleaning algorithm removes irrelevant constituents that are most likely promotional, redundant, or non-informative by analyzing how syntactic constituents associated with `"baca juga"` strings are structured in news content. [More details available in the analysis notebook](docs/analysis.ipynb)
 
 ## Example uses:
 ### Punctuated irrelevant syntactic constituents
