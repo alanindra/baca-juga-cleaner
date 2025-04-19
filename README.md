@@ -9,7 +9,7 @@ The cleaning pipeline is designed for **media monitoring** use cases, particular
 ### Why it matters
 In media monitoring workflows, irrelevant constituents like "baca juga..." can distort keyword frequency related to monitored brands. This tool removes such syntactic noise to improve the accuracy of downstream analytics, such as calculating Share of Voice (SOV).
 
-The data-cleaning algorithm removes irrelevant constituents that are most likely promotional, redundant, or non-informative by analyzing how syntactic constituents associated with `"baca juga"` strings are structured in news content. [More details available in the analysis notebook](docs/analysis.ipynb)
+The data-cleaning algorithm removes irrelevant constituents that are likely promotional, redundant, or non-informative by applying a rule-based method. It filters syntactic structures associated with `"baca juga"` based on how they are typically constructed within news content. [More details available in the analysis notebook](docs/analysis.ipynb).
 
 ## Example uses:
 ### Punctuated irrelevant syntactic constituents
