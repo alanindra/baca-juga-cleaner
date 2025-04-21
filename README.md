@@ -7,9 +7,18 @@ This program cleans news content text data by removing irrelevant syntactic cons
 The cleaning pipeline is designed for **media monitoring** use cases, particularly to prepare datasets for **Share of Voice (SOV)** analysis in brand-related news coverage.
 
 ### Why it matters
-In media monitoring workflows, irrelevant constituents like "baca juga..." can distort keyword frequency related to monitored brands. This tool removes such syntactic noise to improve the accuracy of downstream analytics, such as calculating Share of Voice (SOV).
+In media monitoring, irrelevant constituents like "baca juga..." can distort keyword frequency related to monitored brands. These constituents are difficult to isolate because they can appear anywhere in the text, span beyond single clauses, and are often poorly punctuated. This tool applies rule-based logic and NLTK sentence tokenization to remove such syntactic noise and improve the accuracy of downstream tasks like Share of Voice (SOV) analysis.
 
-The data-cleaning algorithm removes irrelevant constituents by applying a rule-based method. It filters syntactic constructions associated with `"baca juga"` based on how they are typically constructed within news content. More on syntactic constructions of `"baca juga"` constituents can be found [here](baca_juga_syntax.md). More detailed analysis can be found [here](https://github.com/alanindra/baca-juga-cleaner/blob/main/analysis.ipynb).
+The data-cleaning algorithm removes irrelevant constituents by filtering syntactic constructions associated with `"baca juga"` based on how they are typically constructed within news content. More on syntactic constructions of `"baca juga"` constituents can be found [here](baca_juga_syntax.md). More detailed analysis can be found [here](https://github.com/alanindra/baca-juga-cleaner/blob/main/analysis.ipynb).
+
+## Getting started
+Required libraries:
+```
+pip install pandas
+pip install nltk
+```
+
+## Algorithm
 
 ## Example uses:
 ### Punctuated irrelevant syntactic constituents
@@ -36,9 +45,3 @@ Uncleaned news content:
 Cleaned news content:
 > lorem ipsum
 
-## Getting started
-Type this into the terminal to download the required libraries in this program:
-```
-pip install pandas
-pip install nltk
-```
