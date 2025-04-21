@@ -11,10 +11,11 @@ Each syntax construction follows the format [Class][Patterns], where:
 - Patterns:
   - **A**:
 
-### 2. General Observations
+### 2. General rules and observations
 
-- Constituents beginning with the string `"baca juga"` are predominantly short in length.
-- Constituents are considered irrelevant if they satisfy all three of the following:
+- Constituents are extracted from the immediate right context of the `"baca juga"` string, limited to a maximum of three sentence tokens
+- Constituents are predominantly short in length.
+- Constituents are considered definitively irrelevant if they satisfy syntax 1A, i.e., all three of the following:
   - Begin with `"baca juga"`
   - Contain consecutive word-initial capitalization (e.g., "Cara Dapat Saldo")
   - End with an exclamation mark
