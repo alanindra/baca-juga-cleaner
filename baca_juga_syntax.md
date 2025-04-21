@@ -43,4 +43,4 @@ Some long constituents (> 35 words) are still filtered if they meet:
 
 ---
 
-This syntactic framework underpins the rule-based removal process for cleaning Indonesian news text data.
+This syntactic framework underpins the rule-based removal process for cleaning Indonesian news text data. The criteria, e.g. 1A are derived from empirical observation avaiable on [here](https://github.com/alanindra/baca-juga-cleaner/blob/main/analysis.ipynb).
