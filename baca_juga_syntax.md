@@ -3,7 +3,7 @@
 These rules are derived from empirical observation of typical constructions used in news media. More detailed analysis can be found [here](https://github.com/alanindra/baca-juga-cleaner/blob/main/analysis.ipynb).
 
 ### 1. Syntax classification
-Each syntax construction follows the format [Class][Patterns], where:
+Each syntax criteria follows the format [Class][Patterns], where:
 - Class
   - **1**:
   - **2**:
@@ -15,7 +15,7 @@ Each syntax construction follows the format [Class][Patterns], where:
 
 - Constituents are extracted from the immediate right context of the `"baca juga"` string, limited to a maximum of three sentence tokens
 - Constituents are predominantly short in length.
-- Constituents are considered definitively irrelevant if they satisfy syntax 1A, i.e., all three of the following:
+- Constituents are considered definitively irrelevant if they satisfy syntax criteria 1A, i.e., all three of the following:
   - Begin with `"baca juga"`
   - Contain consecutive word-initial capitalization (e.g., "Cara Dapat Saldo")
   - End with an exclamation mark
