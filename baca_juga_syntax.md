@@ -1,4 +1,4 @@
-## The syntactic constructions of `"baca juga"` constituents
+# The syntactic constructions of `"baca juga"` constituents
 
 These rules are derived from empirical observation of typical constructions used in news media. More detailed analysis can be found [here](https://github.com/alanindra/baca-juga-cleaner/blob/main/analysis.ipynb).
 
