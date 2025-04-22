@@ -18,7 +18,21 @@ pip install pandas
 pip install nltk
 ```
 
-## Algorithm
+## Data cleaning flowchart
+```mermaid
+flowchart TD
+  A[Start] --> B[News text]
+  B --> C[Identify baca juga and right context]
+  C --> D[Split into max. 3 sentence tokens]
+  D --> E{Match irrelevant syntax criteria?}
+  E -- Yes --> F{Needs truncation?}
+  E -- No --> G[Retain as relevant]
+  F -- No --> H[Delete entire token]
+  F -- Yes --> I[Truncate token content]
+  G --> J[Cleaned news text]
+  H --> J
+  I --> J
+```
 
 ## Example uses:
 ### Punctuated irrelevant syntactic constituents
