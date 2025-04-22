@@ -1,0 +1,10 @@
+{
+    "program_name":"baca_juga_cleaner",
+    "input_folder":"input/",
+    "output_folder":"output/",
+    "processed_folder":"processed/",
+    "text_col":"content",
+    "cleaned_col":"cleaned_content",
+    "truncated_col":"truncated_content",
+    "baca_juga_col":"baca_juga_exist"
+}
