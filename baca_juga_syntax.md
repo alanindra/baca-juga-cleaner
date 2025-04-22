@@ -69,11 +69,11 @@ Certain constituents, particularly those classified under **2B**, **2C**, and **
 
 - **If the constituent contains more than 15 words without capitalized word clusters**, it will either be **truncated to the first 18 words** or **removed entirely** based on preference or agreed rules.
 
-## 6. Constituent Examples
+## 6. Constituent examples
 
 This section illustrates example constituents classified by syntax criteria. For categories involving transformation (e.g., **2B**, **2C**, **3C**, **3D**), both raw and cleaned versions are shown to highlight how the filtering logic operates.
 
-### 6.1 Short Constituents (Class 1)
+### 6.1 Short constituents (Class 1)
 
 - **1A** — Start with *"baca juga"*, contain capitalized words, and end with "!":
   - *Baca Juga: Google Assistant Bakal Pamit, Digantikan dengan AI Canggih Ini!*
@@ -90,7 +90,7 @@ This section illustrates example constituents classified by syntax criteria. For
 - **1E** — End with "!" only:
   - *Cek Faktanya!*
 
-### 6.2 Medium Constituents (Class 2)
+### 6.2 Medium constituents (Class 2)
 
 - **2A** — Start with *"baca juga"*, contain capitalized words, and end with "!":
   - *Baca Juga: SELAMAT Nomor HP Dompet Elektronik Anda Bisa Klaim Saldo DANA Gratis Rp125.000 Hari Ini Jumat 21 Maret 2025!*
@@ -113,7 +113,7 @@ This section illustrates example constituents classified by syntax criteria. For
   - **Cleaned**:  
     *Akun Kamu Terdata Dapat Saldo DANA Gratis Rp617.000 dari Klaim Link DANA Kaget Siang Ini, Cek Dompet Digital*
 
-### 6.3 Long Constituents (Class 3)
+### 6.3 Long constituents (Class 3)
 
 - **3C** — Start with *"baca juga"*:
   - **Raw**:  
