@@ -29,9 +29,10 @@ flowchart TD
   E -- No --> G[Retain as relevant]
   F -- No --> H[Delete entire token]
   F -- Yes --> I[Truncate token content]
-  G --> J[Cleaned news text]
-  H --> J
-  I --> J
+  G --> J[Baca juga detection aid + manual inspection]
+  J --> K[Cleaned news text]
+  H --> K
+  I --> K
 ```
 
 ## Example uses:
