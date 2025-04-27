@@ -313,6 +313,8 @@ def apply_cleaning(text):
     return pd.Series([cleaned, truncated, detect_baca_juga(cleaned)])
 
 def process_cleaning(input_folder, processed_folder, output_folder, text_col, cleaned_col, truncated_col, baca_juga_col):
+    df = pd.read_csv()
+    
     for filename in os.listdir(input_folder):
         if filename.endswith('.csv'):
             filepath = os.path.join(input_folder, filename)
@@ -325,6 +327,8 @@ def process_cleaning(input_folder, processed_folder, output_folder, text_col, cl
         df.to_csv(output_path, index=False)
         shutil.move(filepath, os.path.join(processed_folder, filename))
         logging.info(f"Processed and moved file: {filename}")
+
+
 
 if __name__ == "__main__":
     setup_logging()
