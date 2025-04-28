@@ -14,8 +14,7 @@ The data-cleaning algorithm removes irrelevant constituents by filtering syntact
 ## Getting started
 Required libraries:
 ```
-pip install pandas
-pip install nltk
+pip install pandas nltk
 ```
 
 ## Data cleaning flowchart
@@ -35,28 +34,32 @@ flowchart TD
   I --> K
 ```
 
-## Example uses:
-### Punctuated irrelevant syntactic constituents
-Uncleaned news content:
-> Berbelanja di aplikasi Shopee akan semakin nyaman dengan menggunakan voucher gratis ongkir, cashback hingga potongan diskon. Itulah sebabnya Anda harus mengetahui cara mendapatkan voucher Shopee gratis ongkir dan cashback, untuk belanja hemat. Voucher Shopee memiliki perbedaan sesuai fungsinya. Voucher gratis ongkir berfungsi untuk mendapatkan gratis ongkos kirim. Voucher cashback berfungsi untuk mendapatkan cashback berupa koin shopee. Sedangkan voucher diskon berfungsi untuk mendapat potongan diskon. **BACA JUGA: Butuh Dana Cepat Rp5,5 Juta? Pahami Cara Pinjam Uang di Shopee Paylater dan Shopee Pinjam**. Ada 5 cara mendapatkan voucher Shopee gratis ongkir, cashback dan juga potongan diskon. Berikut cara mendapatkan sekaligus mengklaim voucher Shopee, yang dikutip dari halaman bantuan Shopee, help.shopee.co.id: 1. Klaim Voucher Shopee Voucher Shopee juga bisa diklaim dengan mudah untuk mendapatkan cashback koin hingga gratis ongkir di menu utama.
+## Example uses
+### Punctuated Irrelevant Syntactic Constituents
+**Uncleaned news content:**
+> Berbelanja di aplikasi Shopee akan semakin nyaman dengan menggunakan voucher gratis ongkir, cashback hingga potongan diskon. Itulah sebabnya Anda harus mengetahui cara mendapatkan voucher Shopee gratis ongkir dan cashback, untuk belanja hemat. Voucher Shopee memiliki perbedaan sesuai fungsinya. Voucher gratis ongkir berfungsi untuk mendapatkan gratis ongkos kirim. Voucher cashback berfungsi untuk mendapatkan cashback berupa koin Shopee. Sedangkan voucher diskon berfungsi untuk mendapat potongan diskon. **BACA JUGA: Butuh Dana Cepat Rp5,5 Juta? Pahami Cara Pinjam Uang di Shopee Paylater dan Shopee Pinjam**. Ada 5 cara mendapatkan voucher Shopee gratis ongkir, cashback dan juga potongan diskon. Berikut cara mendapatkan sekaligus mengklaim voucher Shopee, yang dikutip dari halaman bantuan Shopee, help.shopee.co.id: 1. Klaim Voucher Shopee Voucher Shopee juga bisa diklaim dengan mudah untuk mendapatkan cashback koin hingga gratis ongkir di menu utama.
 
-Cleaned news content:
+**Cleaned news content:**
+> Berbelanja di aplikasi Shopee akan semakin nyaman dengan menggunakan voucher gratis ongkir, cashback hingga potongan diskon. Itulah sebabnya Anda harus mengetahui cara mendapatkan voucher Shopee gratis ongkir dan cashback, untuk belanja hemat. Voucher Shopee memiliki perbedaan sesuai fungsinya. Voucher gratis ongkir berfungsi untuk mendapatkan gratis ongkos kirim. Voucher cashback berfungsi untuk mendapatkan cashback berupa koin Shopee. Sedangkan voucher diskon berfungsi untuk mendapat potongan diskon. Ada 5 cara mendapatkan voucher Shopee gratis ongkir, cashback dan juga potongan diskon. Berikut cara mendapatkan sekaligus mengklaim voucher Shopee, yang dikutip dari halaman bantuan Shopee, help.shopee.co.id: 1. Klaim Voucher Shopee Voucher Shopee juga bisa diklaim dengan mudah untuk mendapatkan cashback koin hingga gratis ongkir di menu utama.
 
-> Berbelanja di aplikasi Shopee akan semakin nyaman dengan menggunakan voucher gratis ongkir, cashback hingga potongan diskon. Itulah sebabnya Anda harus mengetahui cara mendapatkan voucher Shopee gratis ongkir dan cashback, untuk belanja hemat. Voucher Shopee memiliki perbedaan sesuai fungsinya. Voucher gratis ongkir berfungsi untuk mendapatkan gratis ongkos kirim. Voucher cashback berfungsi untuk mendapatkan cashback berupa koin shopee. Sedangkan voucher diskon berfungsi untuk mendapat potongan diskon. Ada 5 cara mendapatkan voucher Shopee gratis ongkir, cashback dan juga potongan diskon. Berikut cara mendapatkan sekaligus mengklaim voucher Shopee, yang dikutip dari halaman bantuan Shopee, help.shopee.co.id: 1. Klaim Voucher Shopee Voucher Shopee juga bisa diklaim dengan mudah untuk mendapatkan cashback koin hingga gratis ongkir di menu utama.
+**Explanation:**  
+The tool successfully removes the punctuated irrelevant constituent:  
+> **BACA JUGA: Butuh Dana Cepat Rp5,5 Juta? Pahami Cara Pinjam Uang di Shopee Paylater dan Shopee Pinjam**
 
-It removes the promotional/advertising "**BACA JUGA: Butuh Dana Cepat Rp5,5 Juta? Pahami Cara Pinjam Uang di Shopee Paylater dan Shopee Pinjam**" phrase mentioning the brand DANA from news mentioning the brand Shopee.
+This prevents cross-brand confusion (removes mention of *DANA* from an article about *Shopee*).
 
-### Unpunctuated irrelevant syntactic consituents
-Uncleaned news content:
-> lorem ipsum
+### Unpunctuated Sequence of Irrelevant Syntactic Constituents
+**Uncleaned news content:**
+> Aplikasi Pinjaman Terbaru Limit Hingga 5 Juta 2025, Dengan Tenor Panjang Bisa Untuk Dana Mudik Reporter: Alfin Ananda | Editor: Syamsul Falaq | Jumat 21-03-2025,04:05 WIB Aplikasi Pinjaman Terbaru Limit Hingga 5 Juta 2025, Dengan Tenor Panjang Bisa Untuk Dana Mudik-- SPinjam adalah pinjaman-online web langsung cair yang dikelola oleh Shopee terdaftar dan diawasi oleh OJK, pinjol ini memiliki keunggulan unik yang tidak dimiliki pinjol lainnya, salah satunya adalah pencairan ke ShopeePay atau Seabank, bank digital yang dikelola oleh Sea Group. **BACA JUGA : Aplikasi Pinjol Daring Tercepat Terdaftar OJK Limit Hingga 30 Juta, Cepat Cair Bunga Rendah Dan Tenor Panjang BACA JUGA : Kebutuhan Lebaran Mencapai 80 Juta? Simak Aplikasi Pinjol Langsung Cair, Anti Ditolak Resmi OJK Berikut** 5.Kredivo Kredivo hadir sebagai alternatif pinjaman yang patut dipertimbangkan dengan status terdaftar dan diawasi oleh OJK, keunggulan Kredivo terletak pada variasi produk pinjaman yang ditawarkan, memungkinkan nasabah untuk memilih opsi yang paling sesuai dengan kebutuhan finansial mereka. Salah satu fitur yang menonjol dari Kredivo adalah persyaratan minimal penghasilan yang relatif terjangkau, yaitu hanya Rp3 juta per bulan, membuka akses pembiayaan bagi segmen masyarakat yang lebih luas.
 
-Cleaned news content:
-> lorem ipsum
+**Cleaned news content:**
+> Aplikasi Pinjaman Terbaru Limit Hingga 5 Juta 2025, Dengan Tenor Panjang Bisa Untuk Dana Mudik Reporter: Alfin Ananda | Editor: Syamsul Falaq | Jumat 21-03-2025,04:05 WIB Aplikasi Pinjaman Terbaru Limit Hingga 5 Juta 2025, Dengan Tenor Panjang Bisa Untuk Dana Mudik-- SPinjam adalah pinjaman-online web langsung cair yang dikelola oleh Shopee terdaftar dan diawasi oleh OJK, pinjol ini memiliki keunggulan unik yang tidak dimiliki pinjol lainnya, salah satunya adalah pencairan ke ShopeePay atau Seabank, bank digital yang dikelola oleh Sea Group. 5.Kredivo Kredivo hadir sebagai alternatif pinjaman yang patut dipertimbangkan dengan status terdaftar dan diawasi oleh OJK, keunggulan Kredivo terletak pada variasi produk pinjaman yang ditawarkan, memungkinkan nasabah untuk memilih opsi yang paling sesuai dengan kebutuhan finansial mereka. Salah satu fitur yang menonjol dari Kredivo adalah persyaratan minimal penghasilan yang relatif terjangkau, yaitu hanya Rp3 juta per bulan, membuka akses pembiayaan bagi segmen masyarakat yang lebih luas.
 
-### Sequences of irrelevant syntactic consituents, where some consituents are not initiated by "baca juga" string
-Uncleaned news content:
-> lorem ipsum
+**Explanation:**  
+The tool detects and removes a long unpunctuated sequence of irrelevant constituents:
+> **BACA JUGA : Aplikasi Pinjol Daring Tercepat Terdaftar OJK Limit Hingga 30 Juta, Cepat Cair Bunga Rendah Dan Tenor Panjang BACA JUGA : Kebutuhan Lebaran Mencapai 80 Juta? Simak Aplikasi Pinjol Langsung Cair, Anti Ditolak Resmi OJK Berikut**
 
-Cleaned news content:
-> lorem ipsum
+This ensures that only relevant information related to the main brand and topic remains.
+
+
 
