@@ -1,0 +1,20 @@
+# Virtual environment
+lib/
+include/
+bin/
+pyvenv.cfg
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Output and log folders
+output/
+processed/
+logs/
+
+# MacOS system file
+.DS_Store
