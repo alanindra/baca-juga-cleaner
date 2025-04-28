@@ -18,14 +18,14 @@ def setup_logging():
     timestamp = time.strftime("%d-%m-%Y-%H.%M.%S", time.localtime(time.time()))
     log_file_path = f"{log_folder}/cleaning_logs_{timestamp}.log"
     logging.basicConfig(filename=log_file_path, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-    logging.info("Logging setup complete.")
+    logging.info("Logging setup complete.\n")
 
 # load config
 def load_config():
     try:
         with open(CONFIG_FILE_PATH, 'r') as file:
             config = json.load(file)
-        logging.info("Configuration loaded successfully.")
+        logging.info("Configuration loaded successfully.\n")
         return config
     except FileNotFoundError:
         logging.error("Configuration file was not found.")
@@ -251,21 +251,34 @@ def handle_medium_token(token, token_split, token_props, base_offset, match_text
 def handle_long_token(token, token_split, token_props, base_offset, match_text, clue_words):
     return handle_medium_token(token, token_split, token_props, base_offset, match_text, clue_words)
 
-def clean_text(text):
+def clean_text(text, row_index=None):
+    if not isinstance(text, str):
+        text = str(text) if not pd.isna(text) else ""
+
     baca_juga_re = re.compile(r"(?i)(baca juga[:\-\s]+(?:[\w\W]+?)(?=\s+baca juga|$))")
     clue_words = ['coba', 'cek', 'lihat', 'simak', 'awas', 'klaim']
     deletion_spans = []
 
     matches = list(baca_juga_re.finditer(text))
+
+    if not matches:
+        return
+    
+    logging.info(f"=== Baca juga constituent found on row {row_index} ===")
+
     for match in matches:
         match_text = match.group(1).strip()
         sentence = ' '.join(match_text.split())
         base_offset = match.start(1)
         
-        fix_bad_punctuation(match)
+        sentence = fix_bad_punctuation(sentence)
 
         tokens = nltk.tokenize.sent_tokenize(sentence)[:3]
+        
+        n_token = 0
         for token in tokens:
+            n_token =+ 1
+            logging.info(f"Token count: {n_token}\n")
             token_split = token.split()
             word_count = len(token_split)
 
@@ -277,7 +290,7 @@ def clean_text(text):
             }
 
             if word_count <= 10:
-                span = handle_short_token(token, token_props, base_offset + match_text.find(token), base_offset + match_text.find(token) + len(token))
+                span = handle_short_token(token_props, base_offset + match_text.find(token), base_offset + match_text.find(token) + len(token))
                 if span:
                     deletion_spans.append(span)
             elif word_count <= 35:
@@ -308,26 +321,34 @@ def detect_baca_juga(text):
     pattern = r'\bbaca\s*juga\b[^a-zA-Z]*'
     return bool(re.search(pattern, text, flags=re.IGNORECASE))
 
-def apply_cleaning(text):
-    cleaned, truncated = clean_text(text)
-    return pd.Series([cleaned, truncated, detect_baca_juga(cleaned)])
+def apply_cleaning(row):
+    text = row[config['text_col']]  # take text from configured column
+    idx = row.name                  # .name gives row number
+    cleaned_result = clean_text(text, row_index=idx)
+
+    if cleaned_result:
+        cleaned, truncated = cleaned_result
+        baca_juga_found = detect_baca_juga(cleaned)
+    else:
+        cleaned = ""
+        truncated = ""
+        baca_juga_found = ""
+
+    return pd.Series([cleaned, truncated, baca_juga_found])
 
 def process_cleaning(input_folder, processed_folder, output_folder, text_col, cleaned_col, truncated_col, baca_juga_col):
-    df = pd.read_csv()
-    
     for filename in os.listdir(input_folder):
         if filename.endswith('.csv'):
             filepath = os.path.join(input_folder, filename)
             df = pd.read_csv(filepath,quotechar='"', quoting=csv.QUOTE_ALL)
             df = df.replace(r'\n', ' ', regex=True)
     
-        df[[cleaned_col, truncated_col, baca_juga_col]] = df[text_col].apply(apply_cleaning)
+            df[[cleaned_col, truncated_col, baca_juga_col]] = df.apply(apply_cleaning, axis=1)
 
-        output_path = os.path.join(output_folder, f"output_{filename}")
-        df.to_csv(output_path, index=False)
-        shutil.move(filepath, os.path.join(processed_folder, filename))
-        logging.info(f"Processed and moved file: {filename}")
-
+            output_path = os.path.join(output_folder, f"output_{filename}")
+            df.to_csv(output_path, index=False)
+            shutil.move(filepath, os.path.join(processed_folder, filename))
+            logging.info(f"Processed and moved file: {filename}")
 
 
 if __name__ == "__main__":
@@ -339,6 +360,6 @@ if __name__ == "__main__":
         config['output_folder'],
         config['text_col'],
         config['cleaned_col'],
-        config['trunc_col'],
+        config['truncated_col'],
         config['baca_juga_col']
     )
