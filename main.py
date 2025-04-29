@@ -7,6 +7,7 @@ import time
 import json
 import csv
 import shutil
+from tqdm import tqdm
 
 CONFIG_FILE_PATH = 'config.json'
 
@@ -289,6 +290,8 @@ def clean_text(text, row_index=None):
                 'with_consecutive_lower': initial_lowercase_cluster(token),
             }
 
+            tqdm.pandas(desc="Cleaning token", colour="green")
+
             if word_count <= 10:
                 span = handle_short_token(token_props, base_offset + match_text.find(token), base_offset + match_text.find(token) + len(token))
                 if span:
@@ -354,6 +357,7 @@ def process_cleaning(input_folder, processed_folder, output_folder, text_col, cl
 if __name__ == "__main__":
     setup_logging()
     config = load_config()
+    tqdm.pandas()
     process_cleaning(
         config['input_folder'], 
         config['processed_folder'], 
