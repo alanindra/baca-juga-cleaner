@@ -22,7 +22,7 @@ Each syntax rule follows the format **[Class][Pattern]**, where:
 
 - Constituents are extracted from up to **three sentence tokens** immediately following `"baca juga"`.
 - Most are **short** and structured as promotional or imperative headlines.
-- Constituents matching **1A**—those starting with `"baca juga"`, containing capitalized clusters, and ending with `"!"`—are the most consistently irrelevant.
+- Constituents matching **1A** (those starting with `"baca juga"`, containing capitalized clusters, and ending with `"!"`) are the most consistently irrelevant.
 
 ## 3. Irrelevant constituent criteria
 
@@ -44,7 +44,7 @@ Medium-length segments are considered irrelevant under:
 - **2D**: Contains capitalized word clusters
 
 ### 3.3 Long constituents (Class 3)
-Long segments are rarely promotional, but these are filtered:
+Long segments are rarely irrelevant, but these are filtered:
 
 - **3C**: Starts with `"baca juga"`
 - **3D**: Contains capitalized clusters and lexical clues (e.g., `"cek"`, `"klaim"`, etc.)
