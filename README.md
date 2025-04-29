@@ -14,7 +14,7 @@ The data-cleaning algorithm removes irrelevant constituents by filtering syntact
 ## Getting started
 Required libraries:
 ```
-pip install pandas nltk
+pip install pandas nltk tqdm
 ```
 
 ## Data cleaning flowchart
