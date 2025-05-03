@@ -264,7 +264,6 @@ def clean_text(text, row_index=None):
 
     if not matches:
         return
-    
     logging.info(f"=== Baca juga constituent found on row {row_index} ===")
 
     for match in matches:
@@ -289,8 +288,6 @@ def clean_text(text, row_index=None):
                 'with_consecutive_caps': initial_caps_cluster(token),
                 'with_consecutive_lower': initial_lowercase_cluster(token),
             }
-
-            tqdm.pandas(desc="Cleaning token", colour="green")
 
             if word_count <= 10:
                 span = handle_short_token(token_props, base_offset + match_text.find(token), base_offset + match_text.find(token) + len(token))
@@ -340,12 +337,12 @@ def apply_cleaning(row):
     return pd.Series([cleaned, truncated, baca_juga_found])
 
 def process_cleaning(input_folder, processed_folder, output_folder, text_col, cleaned_col, truncated_col, baca_juga_col):
-    for filename in os.listdir(input_folder):
+    for filename in tqdm(os.listdir(input_folder), desc=f"Cleaning data", colour="green"):
         if filename.endswith('.csv'):
             filepath = os.path.join(input_folder, filename)
             df = pd.read_csv(filepath,quotechar='"', quoting=csv.QUOTE_ALL)
             df = df.replace(r'\n', ' ', regex=True)
-    
+            
             df[[cleaned_col, truncated_col, baca_juga_col]] = df.apply(apply_cleaning, axis=1)
 
             output_path = os.path.join(output_folder, f"output_{filename}")
